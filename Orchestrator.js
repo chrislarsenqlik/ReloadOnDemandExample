@@ -1,3 +1,13 @@
+/**
+ * HyperQube is an API that seeks to solve low latency challenges using Qlik Sense.
+ * Example API-driven architecture to trigger data updating in ways that are:
+ *	 a. event-driven
+ *	 b. push" style
+ *	 c. variable window size
+ *	 d. incremental/partial 
+ *	 e. orchestrated programmatically
+ * Overall benefit, keeps smaller sized apps working together
+ */
 var app = require('express')();
 var http = require('http').Server(app);
 var noCache = require('connect-nocache')();
@@ -71,42 +81,15 @@ io.on('connection', function(socket){
       )
     }).catch(err => console.log('first reload:'+ err))
 
-
-    // enigma.Connect().then(global => {
-    //    return global.getDefaultAppFolder()
-    // })
-    // //.then(folder => encodeURIComponent('\\') )
-    // .then(folder => {
-    //   console.log('folder: ',folder)
-    //   return enigma.Connect({appname: 'AppControl.qvf'})
-    //   .then(global => {
-    //       console.log('got into global')
-    //       return global.openDoc('AppControl.qvf').then(app => app, err => {
-    //           if( err.code === 1002 ) return global.getActiveDoc();
-    //       })
-    //   })
-    //   .then(app => {
-    //     console.log('trying first reload');
-        
-    //     //console.log(app)
-    //     return app.doReload(0, true, false).then(
-    //         () => app.doSave()
-    //     )
-        
-    //   })
-    // })
-    // .catch(err => console.log('first reload:'+ err))
-
     socket.broadcast.emit('cleardata',eventArray)
-
   });
   
-	socket.on('sensoremit', function(data, callback) {
+  socket.on('sensoremit', function(data, callback) {
     console.log('got a message, arrayLen:',eventArray.length)
     sensordata=JSON.parse(data);
 		socket.broadcast.emit('bounceemit',sensordata);
     eventArray.push(sensordata);
-	});
+  });
 });
 
 //Express Web Endpoints / REST API's
