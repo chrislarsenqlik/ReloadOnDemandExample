@@ -13,7 +13,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<meta http-equiv="cleartype" content="on">
 	<script src="../../resources/assets/external/requirejs/require.js"></script>
-	<!--<script src="http://localhost:33333/socket.io/socket.io.js"></script>--/>
+	<!--<script src="http://localhost:44444/socket.io/socket.io.js"></script>--/>
 	
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -114,25 +114,29 @@
 		<button type="button" class="close" id="closeerr" aria-label="Close"><span aria-hidden="true">×</span></button>
 		<span id="errmsg"></span>
 	</div>
+	<div class="qvobject" style="height:50px" >
+			<button type="button" class="btn btn-primary" id="generateYN">SIMULATE SHIFT ACTIVITY</button>
+			<button type="button" class="btn btn-warning" id="reloadYN">MANUAL RELOAD</button>
+		</div>
 	<div class="row">
-		<div class="col-sm-4 qvplaceholder col-sm-4" style="height:100px;">
-				<div id="QV01" class="" style="background-color:#f2f2f2; height:100px;">
+		<div class="col-sm-4 qvplaceholder col-sm-4" style="height:50px;">
+				<div id="QV01" class="" style="background-color:#f2f2f2; height:50px;">
 				</div>
 			<div>
 			 
 			</div>
 		</div>
-		<div class="col-sm-8 qvplaceholder"   style="height:100px" id="QV02">
-		<button type="button" class="btn btn-primary" id="generateYN">SIMULATE SHIFT ACTIVITY</button>
-		<button type="button" class="btn btn-success" id="conditionsYN">SET CONDITIONS MET!</button>
-		<button type="button" class="btn btn-warning" id="reloadYN">MANUAL RELOAD</button>
+		<div class="col-sm-8 qvobject" style="height:140px" id="QV02">
+		
 		</div>
+		
+		
 	</div>
 	<div class="row">
 		<div class="col-sm-4 qvplaceholder">
 			<div class="panel panel-default">
 			<div class="panel-heading" align="center"><b>Current Data</b></div>
-			  <div class="panel-body" id="QV03"  style="height:300px;overflow:scroll;background-color:#f2f2f2"></div>
+			  <div class="panel-body" id="QV03" style="height:300px;overflow:scroll;background-color:#f2f2f2"></div>
 			</div>
 		</div>
 		<div class="col-sm-8 qvobject" id="QV04">
