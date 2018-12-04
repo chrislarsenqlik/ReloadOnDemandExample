@@ -12,10 +12,10 @@ var app = require('express')();
 var http = require('http').Server(app);
 var noCache = require('connect-nocache')();
 var io = require('socket.io')(http);
-var ioclient = require('socket.io-client')('http://localhost:33333');
-var socketio_port = '33333';
+var ioclient = require('socket.io-client')('http://localhost:44444');
+var socketio_port = '44444';
 const Promise = require('bluebird');
-const qsocks = require('qsocks');
+const enigma = require('enigma');
 var generateFg=1;
 var sensordata={};
 var windowActive=1;
@@ -63,16 +63,16 @@ io.on('connection', function(socket){
     triggerFg=data.triggerFg;
     console.log('got a trigger reload request',triggerFg)
 
-    qsocks.Connect().then(global => {
+    enigma.Connect().then(global => {
        return global.getDefaultAppFolder()
     })
     //.then(folder => encodeURIComponent('\\') )
     .then(folder => {
       console.log('folder: ',folder)
-      return qsocks.Connect({appname: 'LambdaWindow1.qvf'})//'LambdaWindow1.qvf'})//folder + childParentApps[0].childApps[0]})
+      return enigma.Connect({appname: 'AppControl.qvf'})
       .then(global => {
           console.log('got into global')
-          return global.openDoc('LambdaWindow1.qvf').then(app => app, err => {
+          return global.openDoc('AppControl.qvf').then(app => app, err => {
               if( err.code === 1002 ) return global.getActiveDoc();
           })
       })
@@ -80,7 +80,7 @@ io.on('connection', function(socket){
         console.log('trying first reload');
         
         //console.log(app)
-        return app.doReload(0, true, false).then(
+        return app.doReload(0, false, false).then(
             () => app.doSave()
         )
         
