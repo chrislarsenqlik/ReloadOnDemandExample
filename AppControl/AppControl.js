@@ -1,11 +1,4 @@
-/*
- * Bootstrap-based responsive mashup
- * @owner Enter you name here (xxx)
- */
-/*
- *    Fill in host and port for Qlik engine
- */
-var socketio_port = 33333;
+var socketio_port = 44444;
 var dataqueue=[];
 var data=[];
 var generateDataYN=0;
@@ -43,7 +36,7 @@ var reloadBtn = document.getElementById('reloadYN');
 var conditionsBtn = document.getElementById('conditionsYN');
 var records=[];
 
-var socket = io.connect('http://localhost:33333');
+var socket = io.connect('http://localhost:44444');
 
 socket.on('connection', function (data) {
 	console.log('connected', data);
@@ -108,9 +101,9 @@ generateBtn.addEventListener("click", function(){
 	}
 });
 
-conditionsBtn.addEventListener("click", function(){
-	console.log('conditionsMet Button Hit');
-});
+//conditionsBtn.addEventListener("click", function(){
+//	console.log('conditionsMet Button Hit');
+//});
 
 reloadBtn.addEventListener("click", function(){
 	console.log('Reload Button Hit');
@@ -202,12 +195,13 @@ require( ["js/qlik"], function ( qlik ) {
 		} );
 	}
 
-	//callbacks -- inserted here --
-	//open apps -- inserted here --
-	var app = qlik.openApp('LambdaWindow1.qvf', config);
+	var app = qlik.openApp('AppControl.qvf', config);
+	
+	
 
 	//get objects -- inserted here --
-	app.getObject('QV04','EpPjcd');
+	app.getObject('QV04','GbYbDM');
+	
 	//create cubes and lists -- inserted here --
 	if ( app ) {
 		new AppUi( app );
