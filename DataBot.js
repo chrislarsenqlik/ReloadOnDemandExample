@@ -3,7 +3,12 @@ var uniqueRandomArray=require('random-item');
 const Promise = require('bluebird');
 const qsocks = require('qsocks');
 var request=require('request');
-var intervalGenSecs=.5;
+
+// Frame rate - 100 ms seems to work fine.. it's nice to stress test with this number. 
+// Had to stop consoling in browser at this rate, but otherwise works fine. So far, have added and indexed several thousand records
+// at a time and it is not taking over a second total for the reload. Add Load is performant
+var intervalGenSecs=.1; 
+
 var intervalGenMs=intervalGenSecs*1000; //every x milliseconds for typical sensor readings
 var sensorClassArray = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P');
 var sensorClass=uniqueRandomArray(sensorClassArray);
