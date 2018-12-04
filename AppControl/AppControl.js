@@ -1,3 +1,10 @@
+/*
+ * Bootstrap-based responsive mashup
+ * @owner Enter you name here (xxx)
+ */
+/*
+ *    Fill in host and port for Qlik engine
+ */
 var socketio_port = 44444;
 var dataqueue=[];
 var data=[];
@@ -6,7 +13,12 @@ var generateDataYN=0;
 require.config({
 	paths: {
 		socketio: 'http://localhost:'+socketio_port+'/socket.io/socket.io'
-	}
+	}//,
+//	shim: {
+//		'socketio': {
+//		  exports: 'io'
+//		}
+//	}
 });
 
 var prefix = window.location.pathname.substr( 0, window.location.pathname.toLowerCase().lastIndexOf( "/extensions" ) + 1 );
@@ -190,11 +202,14 @@ require( ["js/qlik"], function ( qlik ) {
 		} );
 	}
 
+	//callbacks -- inserted here --
+	//open apps -- inserted here --
 	var app = qlik.openApp('AppControl.qvf', config);
 	
 	
 
 	//get objects -- inserted here --
+	app.getObject('QV02','amVSjf');
 	app.getObject('QV04','GbYbDM');
 	
 	//create cubes and lists -- inserted here --
