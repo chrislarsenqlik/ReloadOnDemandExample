@@ -1,15 +1,15 @@
-var ioclient = require('socket.io-client')('http://localhost:33333');
+var ioclient = require('socket.io-client')('http://localhost:44444');
 var uniqueRandomArray=require('random-item');
 const Promise = require('bluebird');
-const qsocks = require('qsocks');
-var request=require('request');
+const enigma = require('enigma.js');
+//var request=require('request');
 
 // Frame rate - 100 ms seems to work fine.. it's nice to stress test with this number. 
 // Had to stop consoling in browser at this rate, but otherwise works fine. So far, have added and indexed several thousand records
 // at a time and it is not taking over a second total for the reload. Add Load is performant
-var intervalGenSecs=.1; 
+var intervalGenSecs=.1;
 
-var intervalGenMs=intervalGenSecs*1000; //every x milliseconds for typical sensor readings
+var intervalGenMs=intervalGenSecs*1000; 
 var sensorClassArray = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P');
 var sensorClass=uniqueRandomArray(sensorClassArray);
 sensorIdArray=new Array('A123', 'B234', 'C535', 'D254','E559','F023','G737', 'H344', 'I743', 'J554','K534','L024','M232','N020','O255','P723');
@@ -34,7 +34,7 @@ var readCounterBtwFail=0;
 var failValueTest=0;
 var meetsFailCriteria=0;
 var conveyorSection=0;
-var appToLoad='LambdaWindow1.qvf';
+var appToLoad='AppControl.qvf';
 var messageBroker='socket.io';
 
 ioclient.on('generateDataYN', function(data) {
