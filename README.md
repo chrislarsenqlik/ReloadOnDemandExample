@@ -6,7 +6,7 @@ This runs against Qlik Sense Desktop as it doesn't have any authentication at th
 2. Enter directory and run "npm install"
 3. Run orchestrator in a cmd prompt like "node Orchestrator"
 4. Run Databot in another cmd prompt like "node Databot"
-5. Copy included QVF into the Qlik\Sense\Apps directory
+5. Copy included AppControl.QVF file into the Qlik\Sense\Apps directory
 6. Copy the "AppControl" Extension (mashup) into the Qlik\Sense\Extensions directory
 7. Visit http://localhost:4848/extensions/AppControl/AppControl.html and click 'Awaken Databot', then click Manual Reload to see the reload. The trigger condition met button doesn't do anything yet, but that's coming
 
