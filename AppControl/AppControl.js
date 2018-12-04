@@ -54,15 +54,15 @@ socket.on('bounceemit', function (data) {
 	//console.log('got msg bounce', data);
 	
 	if ( data.length > 1 ) {
-		realtimediv.innerHTML += '<br>'+data.sensorclass+' -- '+data.readvalue+' -- '+data.timestring;
-		realtimediv.scrollTop = realtimediv.scrollHeight;
+		//realtimediv.innerHTML += '<br>'+data.sensorclass+' -- '+data.readvalue+' -- '+data.timestring;
+		//realtimediv.scrollTop = realtimediv.scrollHeight;
 		records.push(data);
 		statusdiv.innerHTML='number of records: '+records.length;
 		statusdiv.innerHTML+='<br>'
 		statusdiv.innerHTML+='last record timestamp: '+records.length;
 	} else {
-		realtimediv.innerHTML += '<br>'+data.sensorclass+' -- '+data.readvalue+' -- '+data.timestring;
-		realtimediv.scrollTop = realtimediv.scrollHeight;
+		//realtimediv.innerHTML += '<br>'+data.sensorclass+' -- '+data.readvalue+' -- '+data.timestring;
+		//realtimediv.scrollTop = realtimediv.scrollHeight;
 		records.push(data);
 		statusdiv.innerHTML='number of records: '+records.length;
 		statusdiv.innerHTML+='<br>'
