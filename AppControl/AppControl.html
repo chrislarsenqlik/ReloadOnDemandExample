@@ -114,28 +114,27 @@
 		<button type="button" class="close" id="closeerr" aria-label="Close"><span aria-hidden="true">×</span></button>
 		<span id="errmsg"></span>
 	</div>
-	<div class="qvobject" style="height:50px" >
-			<button type="button" class="btn btn-primary" id="generateYN">SIMULATE SHIFT ACTIVITY</button>
-			<button type="button" class="btn btn-warning" id="reloadYN">MANUAL RELOAD</button>
-		</div>
-	<div class="row">
-		<div class="col-sm-4 qvplaceholder col-sm-4" style="height:50px;">
-				<div id="QV01" class="" style="background-color:#f2f2f2; height:50px;">
+	<div style="height:50px" >
+		<button type="button" class="btn btn-primary" id="generateYN">SIMULATE SHIFT ACTIVITY</button>
+		<button type="button" class="btn btn-warning" id="reloadYN">MANUAL RELOAD</button>
+	</div>
+	<div class="row" style="position: relative; ">
+		<div style="vertical-align: middle">
+			<div class="col-sm-4">
+				<div class="panel panel-default">
+					<div class="panel-heading" align="center"><b>Latest Data / Record Count</b></div>
+					<div id="QV01" style="text-align: center; vertical-align: middle; display: table-cell; background-color: #f2f2f2; border-radius: 5px; padding: 5px; padding-left: 10px; height:150px; width: 400px; line-height: 30px"></div>
 				</div>
-			<div>
-			 
+			</div>
+			<div style="vertical-align:middle; text-align: center; position: relative" >
+				<div class="col-sm-8" style="height:200px" id="QV02"></div>
 			</div>
 		</div>
-		<div class="col-sm-8 qvobject" style="height:140px" id="QV02">
-		
-		</div>
-		
-		
 	</div>
 	<div class="row">
 		<div class="col-sm-4 qvplaceholder">
 			<div class="panel panel-default">
-			<div class="panel-heading" align="center"><b>Current Data</b></div>
+			  <div class="panel-heading" align="center"><b>Current Data</b></div>
 			  <div class="panel-body" id="QV03" style="height:300px;overflow:scroll;background-color:#f2f2f2"></div>
 			</div>
 		</div>
