@@ -6,12 +6,7 @@ var generateDataYN=0;
 require.config({
 	paths: {
 		socketio: 'http://localhost:'+socketio_port+'/socket.io/socket.io'
-	}//,
-//	shim: {
-//		'socketio': {
-//		  exports: 'io'
-//		}
-//	}
+	}
 });
 
 var prefix = window.location.pathname.substr( 0, window.location.pathname.toLowerCase().lastIndexOf( "/extensions" ) + 1 );
@@ -44,7 +39,7 @@ socket.on('connection', function (data) {
 });
 
 socket.on('bounceemit', function (data) {
-	console.log('got msg bounce', data);
+	//console.log('got msg bounce', data);
 	
 	if ( data.length > 1 ) {
 		realtimediv.innerHTML += '<br>'+data.sensorclass+' -- '+data.readvalue+' -- '+data.timestring;
