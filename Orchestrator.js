@@ -15,7 +15,9 @@ var io = require('socket.io')(http);
 var ioclient = require('socket.io-client')('http://localhost:44444');
 var socketio_port = '44444';
 const Promise = require('bluebird');
-const enigma = require('enigma');
+const enigma = require('enigma.js');
+const WebSocket = require('ws');
+const schema = require('enigma.js/schemas/12.20.0.json');
 var generateFg=1;
 var sensordata={};
 var windowActive=1;
@@ -44,6 +46,12 @@ var kafka_ip='153.92.35.73';
 var kafka_port='2181';
 var kafka_topic='iot3';
 
+const session = enigma.create({
+  schema,
+  url: 'ws://localhost:9076/app/engineData',
+  createSocket: url => new WebSocket(url),
+});
+
 //Socket.io block start 1
 io.on('connection', function(socket){
   console.log('got a connection')
@@ -63,30 +71,41 @@ io.on('connection', function(socket){
     triggerFg=data.triggerFg;
     console.log('got a trigger reload request',triggerFg)
 
-    enigma.Connect().then(global => {
-       return global.getDefaultAppFolder()
-    })
-    //.then(folder => encodeURIComponent('\\') )
-    .then(folder => {
-      console.log('folder: ',folder)
-      return enigma.Connect({appname: 'AppControl.qvf'})
-      .then(global => {
-          console.log('got into global')
-          return global.openDoc('AppControl.qvf').then(app => app, err => {
-              if( err.code === 1002 ) return global.getActiveDoc();
-          })
-      })
-      .then(app => {
-        console.log('trying first reload');
+
+    session
+    .open()
+    .then(global => global.openDoc('AppControl.qvf')).then((app) => {
+      console.log(`Opened app ${app.id}`);
+      return app.doReload(0, true, false).then(
+        () => app.doSave()
+      )
+    }).catch(err => console.log('first reload:'+ err))
+
+
+    // enigma.Connect().then(global => {
+    //    return global.getDefaultAppFolder()
+    // })
+    // //.then(folder => encodeURIComponent('\\') )
+    // .then(folder => {
+    //   console.log('folder: ',folder)
+    //   return enigma.Connect({appname: 'AppControl.qvf'})
+    //   .then(global => {
+    //       console.log('got into global')
+    //       return global.openDoc('AppControl.qvf').then(app => app, err => {
+    //           if( err.code === 1002 ) return global.getActiveDoc();
+    //       })
+    //   })
+    //   .then(app => {
+    //     console.log('trying first reload');
         
-        //console.log(app)
-        return app.doReload(0, false, false).then(
-            () => app.doSave()
-        )
+    //     //console.log(app)
+    //     return app.doReload(0, true, false).then(
+    //         () => app.doSave()
+    //     )
         
-      })
-    })
-    .catch(err => console.log('first reload:'+ err))
+    //   })
+    // })
+    // .catch(err => console.log('first reload:'+ err))
 
     socket.broadcast.emit('cleardata',eventArray)
 
