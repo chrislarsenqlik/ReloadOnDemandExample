@@ -1,13 +1,3 @@
-/**
- * HyperQube is an API that seeks to solve low latency challenges using Qlik Sense.
- * Example API-driven architecture to trigger data updating in ways that are:
- *	 a. event-driven
- *	 b. push" style
- *	 c. variable window size
- *	 d. incremental/partial 
- *	 e. orchestrated programmatically
- * Overall benefit, keeps smaller sized apps working together
- */
 var app = require('express')();
 var http = require('http').Server(app);
 var noCache = require('connect-nocache')();
